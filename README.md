@@ -1,5 +1,6 @@
-# Automated-Arch-update
-This repository provides a bash script that automates the process of updating and cleaning up an Arch Linux system. By running this script, you can easily keep your system up to date and remove unused packages.
+# Arch Linux Continuous Update Automation
+
+This repository provides a bash script that automates the process of updating and cleaning up an Arch Linux system. The script is modified to run continuously in the background, periodically updating the system at specified intervals.
 
 ## Prerequisites
 
@@ -18,6 +19,30 @@ To use this script, you need to have the following installed on your Arch Linux 
 
 3. Make the script executable by running the following command:
 
-   ```
-   chmod +x update.sh
-   ```
+```
+chmod +x update.sh
+```
+   
+## Run the script
+
+```
+nohup ./update.sh > update_log.txt &
+```
+
+The script will start running in the background, continuously updating the system and cleaning up unused packages. The output will be saved to the update_log.txt file.
+
+Note: The script will sleep for a specified duration (e.g., 24 hours) between updates. You can adjust the sleep duration as per your preference by modifying the script.
+
+Monitor the log file (update_log.txt) to check the script's progress and any potential errors.
+
+## Stopping the Script
+To stop the continuous update process, you need to find the process ID (PID) of the script and terminate it. You can use the following command to find the PID:
+```
+ps aux | grep update.sh
+```
+
+Look for the line that contains the script's information and note the corresponding PID. Then, terminate the process using the kill command:
+```
+kill <PID>
+```
+Replace <PID> with the actual process ID of the script.
